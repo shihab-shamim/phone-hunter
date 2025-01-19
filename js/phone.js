@@ -1,3 +1,6 @@
+let currectIndex=12
+let startIndex=0
+
 const loadData= async(search='iphone')=>{
     const  res=await fetch(`https://openapi.programming-hero.com/api/phones?search=${search}`)
     const data= await res.json()
@@ -14,9 +17,11 @@ const displayPhones=phones=>{
     else{
         button.classList.add('hidden')
     }
+    
     phoneContainer.innerHTML='' 
     
-    const phoneses=phones.slice(0,12)
+    const phoneses=phones.slice(startIndex,currectIndex)
+   
 
     phoneses.forEach(phone=>{
         const phoneElement=document.createElement('div')
@@ -64,6 +69,16 @@ const loadingSpinner=(isLoading)=>{
     else{
         loading.classList.add('hidden')
     }
+
+}
+const handleShow=()=>{
+    loadingSpinner(true)
+    startIndex+=currectIndex
+    currectIndex+=12
+    
+    const search=document.getElementById("search-filed").value
+    
+    loadData(search)
 
 }
 
