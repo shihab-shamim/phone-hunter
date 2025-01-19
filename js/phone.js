@@ -11,6 +11,9 @@ const displayPhones=phones=>{
     if(phones.length>12){
         button.classList.remove('hidden')
     }
+    else{
+        button.classList.add('hidden')
+    }
     phoneContainer.innerHTML='' 
     
     const phoneses=phones.slice(0,12)
@@ -37,17 +40,30 @@ const displayPhones=phones=>{
                     </div>
                 `   
                 phoneContainer.appendChild(phoneElement)
+                loadingSpinner(false)
             })
 
     
 }
 
 function handleSearch() {
+    loadingSpinner(true)
     const search=document.getElementById("search-filed").value
     console.log(search);
     
     loadData(search)
 
+
+}
+
+const loadingSpinner=(isLoading)=>{
+    const loading=document.getElementById('loading-spinner')
+    if(isLoading){
+        loading.classList.remove('hidden')
+    }
+    else{
+        loading.classList.add('hidden')
+    }
 
 }
 
