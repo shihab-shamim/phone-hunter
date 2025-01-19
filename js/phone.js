@@ -7,9 +7,15 @@ const loadData= async(search='iphone')=>{
 
 const displayPhones=phones=>{
     const phoneContainer=document.getElementById('phone-container')
+    const button=document.getElementById('show-all')
+    if(phones.length>12){
+        button.classList.remove('hidden')
+    }
     phoneContainer.innerHTML='' 
+    
+    const phoneses=phones.slice(0,12)
 
-    phones.forEach(phone=>{
+    phoneses.forEach(phone=>{
         const phoneElement=document.createElement('div')
         phoneElement.classList=('w-full  overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800')
         phoneElement.innerHTML=`
