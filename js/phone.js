@@ -1,17 +1,17 @@
 let currectIndex=12
 let startIndex=0
 
-const loadData= async(search='iphone')=>{
+const loadData= async(search='iphone',isShowAll)=>{
     const  res=await fetch(`https://openapi.programming-hero.com/api/phones?search=${search}`)
     const data= await res.json()
   const phones=data.data
-  displayPhones(phones)
+  displayPhones(phones,isShowAll)
 }
 
-const displayPhones=phones=>{
+const displayPhones=(phones,isShowAll)=>{
     const phoneContainer=document.getElementById('phone-container')
     const button=document.getElementById('show-all')
-    if(phones.length>12){
+    if(phones.length>12 && !isShowAll){
         button.classList.remove('hidden')
     }
     else{
@@ -20,10 +20,15 @@ const displayPhones=phones=>{
     
     phoneContainer.innerHTML='' 
     
-    const phoneses=phones.slice(startIndex,currectIndex)
-   
+    let displayedPhones = phones;
+    if (!isShowAll) {
+        const startIndex = 0; // Define the start index
+        const currectIndex = 12; // Define the current index or the number of items to show
+        displayedPhones = phones.slice(startIndex, currectIndex);
+    }
 
-    phoneses.forEach(phone=>{
+
+    displayedPhones.forEach(phone=>{
         const phoneElement=document.createElement('div')
         phoneElement.classList=('w-full  overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800')
         phoneElement.innerHTML=`
@@ -51,12 +56,12 @@ const displayPhones=phones=>{
     
 }
 
-function handleSearch() {
+function handleSearch(isShowAll) {
     loadingSpinner(true)
     const search=document.getElementById("search-filed").value
-    console.log(search);
     
-    loadData(search)
+    
+    loadData(search,isShowAll)
 
 
 }
@@ -72,13 +77,7 @@ const loadingSpinner=(isLoading)=>{
 
 }
 const handleShow=()=>{
-    loadingSpinner(true)
-    startIndex+=currectIndex
-    currectIndex+=12
-    
-    const search=document.getElementById("search-filed").value
-    
-    loadData(search)
+     handleSearch(true);
 
 }
 
