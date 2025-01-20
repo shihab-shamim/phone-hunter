@@ -6,6 +6,7 @@
     <title>Phone Hunter</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -45,9 +46,30 @@
             <input onclick="handleShow()"  type="button" value="Show All" class="bg-blue-500 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors">
         </div>
 
+        <!-- show modal  -->
+         <!-- Open the modal using ID.showModal() method -->
+
+<dialog id="showModal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="contents">
+      
+    </div>
+      <form method="dialog" class="flex justify-end">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
     </main>
 
     <footer>
+      <!-- From Uiverse.io by alexruix --> 
+  <div class="card">
+
+
+    </div>
 
 
     </footer>

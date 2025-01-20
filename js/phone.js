@@ -85,8 +85,34 @@ const handleShowDetails=async(slug)=>{
     const  res=await fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
     const data= await res.json()
     const phone=data.data
+    handleShowPhoneDetails(phone)
+    
    
+
+
+}
+
+const handleShowPhoneDetails=(phone)=>{
+    const containers=document.getElementById('contents')
+
+    const div=document.createElement('div')
+    containers.classList='card'
+    
+
+    containers.innerHTML=`
    
+    
+    <img class="card-img" src="${phone.image}" alt="">
+    <div class="card-info">
+      <p class="text-title">${phone?.name} </p>
+      <p class="text-body">${phone?.mainFeatures?.displaySize}</p>
+    </div>
+    
+    
+    `
+    
+    showModal.showModal()
+    
 
 
 }
